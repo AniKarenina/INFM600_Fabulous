@@ -1,3 +1,5 @@
+# R script for Q3: how strongly/feebly the station location play a role in bike trips
+
 # read the file
 R <- read.csv(file.choose()) 
 # install the relative package
@@ -8,6 +10,7 @@ library(data.table)
 attach(R)
 
 # calculate the distance between two groups of long and lat and add the distance into the table
+# This is the linear distance based on long and lat. We will try to connect Google MAp API and calculate the route distance in the later
 setDT(R)[, distance_hav := distHaversine(matrix(c(R$start_long, R$start_lat), ncol = 2), matrix(c(R$end_long, R$end_lat), ncol = 2))]  
 # output the table
 write.table(R,'distance.txt',quote=FALSE,sep="\t")
