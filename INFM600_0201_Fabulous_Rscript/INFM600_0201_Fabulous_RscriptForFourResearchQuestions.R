@@ -1,4 +1,4 @@
-#All datasets using in R script could be found in Github:/INFM600_Fabulous/INFM600_0201_Fabulous_Dataset 
+#All datasets using in R script could be found in Github:/INFM600_Fabulous/INFM600_0201_Fabulous_DataSet 
 #R script for Research Question #1:how do the weather conditions effect bike trips?
 #read the file
 data = read.csv("C:\\Users\\masage\\Desktop\\WeatherRide.csv")
