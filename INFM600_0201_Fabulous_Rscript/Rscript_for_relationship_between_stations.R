@@ -7,7 +7,7 @@ install.packages("geosphere")
 install.packages("data.table")
 library(geosphere)
 library(data.table)
-attach(R)
+?Sattach(R)
 
 # calculate the distance between two groups of long and lat and add the distance into the table
 # This is the linear distance based on long and lat. We will try to connect Google MAp API and calculate the route distance in the later
