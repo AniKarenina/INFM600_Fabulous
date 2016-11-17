@@ -1,5 +1,5 @@
 #Read the file naming "INFM600_0201_Fabulous_RidershipPerDate_holiday.csv"
-h = read.csv(file.choose())
+h = read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_RidershipPerDate_holiday.csv")
 head(h)
 
 #subset records based on whether the date is holiday or not
