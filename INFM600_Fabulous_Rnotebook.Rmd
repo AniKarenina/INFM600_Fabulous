@@ -1,8 +1,9 @@
 ---
 title: "INFM600_Fabulous_Rnotebook"
 output:
-  pdf_document: default
+  html_document: default
   html_notebook: default
+  pdf_document: default
 ---
 
 ```{r}
@@ -94,7 +95,7 @@ pairwise.t.test(p$Ridership,p$Category_ID,p.adj="bonferroni")
 # R script for Q3: how strongly/feebly the station location play a role in bike trips
 
 # read the file
-R <- read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_DistanceBetweenStartAndEnd.txt") 
+R <- read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_DistanceBetweenStartAndEnd.csv") 
 # install the relative package
 
 library(geosphere)
