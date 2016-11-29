@@ -1,11 +1,19 @@
 # -*- coding: utf-8 -*-
+"""However, We found google API charges when there are more than 2500 elements per day. Therefore
+we will use R to calculate to distance 
 """
-Created on Mon Nov 28 11:04:14 2016
+import googlemaps
+    
+file=open("INFM600_0201_Fabulous_distance.txt")
+result=open("IFNM600_result.txt","w")
 
-@author: Administrator
-"""
-file=open("D:\Documents\GitHub\INFM600_Fabulous\123.txt")
-google_api="AIzaSyDfkpkSBEkcJCk4mGTQ19feimIwm-wh5Vc"
+google_api="AIzaSyDfkpkSBEkcJCk4mGTQ19feimIwm-wh5Vc"  
+
+gmaps=googlemaps.Client(key=google_api)
+
+x=gmaps.distance_matrix('New York City','Chicago')
+  
+
 
 
 for line in file:
@@ -15,12 +23,19 @@ for line in file:
     startLong=llist[3]
     endLat=llist[5]
     endLong=llist[6]
-    x=distance(startLat,startLong,endLat,endLong)
-    print(x)
+    start=startLat+","+startLong
+    end=endLat+","+endLong
+    gmaps=googlemaps.Client(key=google_api)
+    x=gmaps.distance_matrix(start,end)
     
+    for each in x['rows']:
+        a=each['elements'][0]
+        b=a['distance']
+        distance=b['value']
+        distance=str(distance)
+        result.write(llist[0]+" "+distance)
+        result.write("\n")
 
-def distance(sLat,sLong,eLat,eLong):
-    url="https://maps.googleapis.com/maps/api/distancematrix/json?origins=%s，%s&destinations=%s,%s&mode=bicycling&key=" %(sLat,sLong,eLat,eLong)
-    final_url=url+google_api
-    
-    return final_url
+        
+result.close()
+print('finish')
