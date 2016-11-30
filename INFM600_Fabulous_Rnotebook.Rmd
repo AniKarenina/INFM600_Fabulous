@@ -2,7 +2,8 @@
 title: "INFM600_Fabulous_Rnotebook"
 output:
   html_document: default
-  html_notebook: default
+  html_notebook:
+    toc: yes
   pdf_document: default
 ---
 #Research Question #1:how do the weather conditions effect bike trips?
