@@ -37,30 +37,37 @@ plot(b$mean_temperature, b$rides,xlab="Mean Temperature",ylab="The Number of Rid
 ```
 
 
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Description:
 
+This graph shows the relationship between mean temperature and the number of ridership. Although there are some outliers, the relationship is moderate positive linear relationship. Therefore, we conducted correlation test for these two variables. The p-value is smaller than 2.2e-16, so we reject the null hypothesis and conclude that there is a linear relationship between mean temperature and ridership. Meanwhile, since the correlation coefficient is equal to 0.657, we have the same conclusion as shown by the above plot that there is a meduim positive linear relationship between these two variables, which satisfied one of the assumptions of multiple linear regression. 
 
 ```{r}
 plot(b$mean_dew, b$rides,xlab="Mean Dew Point Temperature",ylab="The Number of Ridership",main="The Relationship between Mean Dew Point Temperature and Ridership")
 ```
 
 
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Description:
+
+This graph shows the relationship between mean dew point temperature and the number of ridership. Although there are some outliers, the relationship is a positive linear relationship. Therefore, we conducted correlation test for these two variables. The p-value is smaller than 2.2e-16, so we reject the null hypothesis and conclude that there is a linear relationship between mean dew point temperature and ridership. Meanwhile, since the correlation coefficient is equal to 0.542, we have the same conclusion as shown by the above plot that there is a moderate positive linear relationship between these two variables, which satisfied one of the assumptions of multiple linear regression. 
+
 ```{r}
 #check for outliers (Residuals vs Fitted)
 #there are 3 outliers that are more than 3 standard deviations away
 plot(lm(rides ~ mean_temperature + mean_dew, data = b))
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description: 
+
+For the first graph, "Residuals vs Fitted", this graph shows the relationship between estimated reponses on x axis and residuals on the y axis, which let us detect non-linearity, unequal error variances and outliers, which are the assumptions of multiple linear regression. From this graph, since the residuals looks sort of "bounce radomly " around the 0 line, the assumption that the relationship is lineaer is reasonable. Meanwhile, because most residuals form a horizonal band around the 0 line, it suggests taht the variances of the error are equal. However, there are some residuals that stand out from the 0 line, suggesting there are outliers.
+
+For the second graph, "Normal Q-Q", this graph shows the QQ plot for ridership against mean temperature and mean dew point temperature. From this graph, it suggests that it is a normal distribution since most points are fitted in the line. However, there are some points that deviated from the line, which we think are outliers.
+
+For the third graph, "Scale-Location", this graph are used to check homoscedasticity that whether the data have the same finite variance. From this graph, we could found there is no obvious pattern in the residuals. Therefore, we conclude that our data meet the assumption of homoscedasticity.
+
+For the forth graph, "Residuals vs Leverage", this graph shows the standardized residuals against levelrage. We can found most residuals are symmetrically centered around zero and reach 3-4 standard deviations aways from zero, the same as the expectation of the normal distribution. Meanwhile, although there is an extremly large outlier labed "1621", the cook's distance is also very small and no points have a large Cook's distance that larger than 0.5.
+
+Therefore, from these four plots, we check the assumptions of multiple lineaer regression and most of assumptions are satisfied. Although there are some outliers, they do not have a large effect because of our large sample size. 
+
 ```{r}
 #create a histogram of residuals to check for non-normality of error
 #residuals are normally distributed, which does not violate the assumption
@@ -69,10 +76,9 @@ hist(resid)
 ```
 
 
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Description: 
+
+This graph is the histogram of residuals and shows the distribution of the residuals, which check the same assumption as the above qq plot. It is easy to be identified that the distribution of residuals are the normal distribution, satisfying one of the assumptions of multiple linear regression.
 
 #Research Question #2: what are the peak hours on bike trips in a day
 ```{r}
