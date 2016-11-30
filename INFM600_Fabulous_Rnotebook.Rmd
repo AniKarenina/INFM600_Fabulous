@@ -89,10 +89,10 @@ sd(q$Ridership)
 #do a basic plot for the trends of picking up bikes in time of aday
 plot(q$Hour,q$Ridership,main="Trends in Hourly Ridership Statistics", xlab="The time of a day",ylab="The Number ofRidership",type="s")
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description: 
+
+This graph shows the distribution of picking up bikes in a day. We aggregate the data by hours. From this graph, there are two peak hours of using bikes: 9 am and 5pm, which are typical on duty and off duty time. Therefore, we might conclude that most people use rental bikes to commute to work and go home. This found is contrary to our expectations that tourists are the major group of using rental bikes. 
 
 ```{r}
 
@@ -152,28 +152,10 @@ sd(R$distance_hav)
 # do a basic histogram and QQ plot of ridership per group of start station and end station
 plot(R$distance_hav,R$Ridership,xlab="Distance between Stations",ylab="The Number of Ridership",main="The Relationship between Distance and Ridership",type="h")
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```{r}
-qqnorm(R$Ridership)
-qqline(R$Ridership)
-```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```{r}
-# do a basic histogram and QQ plot of distance between group of start station and end station
-qqnorm(R$distance_hav)
-qqline(R$distance_hav)
 
-```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Description: 
+
+Before this graph, we group all data by start station and end station and use R to calculate the distance between two set of long and lat. The graph shows the relatonship between the number of ridership and the distance between start station and end station. From this graph, it could be identified that there is a negative relatonship between ridership and distance. In other words, the farther the distance between two stations is, the smaller the number of the ridership is. However, there is a limitation that we calculate the linear distance between two set of long and lat, instead of actual distance. (*we have used python to connect Google API and calcualte the actual distance. But Google API will charge us if there are more than 2500 elements, while we have more than 30000 elements)
 
 #Research Question #4:how do the national holidays impact the bike ride counts?
 ```{r}
@@ -187,7 +169,7 @@ x=plot(h$StartDate,h$Ridership,main="The Ridership Distribution from 2010 to 201
 
 Descrition:
 
-This graph represents the whole distribution of the ridership from 2010 to 2016, which shows a very interesting trend. It is easy to be identified that the ridership is highly related to some key factors, which could be time, weather condition, temperature and season. In addition, in this graph, there are some outliers that have an unsual 
+This graph represents the whole distribution of the ridership from 2010 to 2016, which shows a very interesting trend. It is easy to be identified that the ridership is highly related to some key factors, which could be time, weather condition, temperature and season. In addition, in this graph, there are some outliers that have an unsual performance on certain dates. Therefore, we think it might be caused by some other key factors, like holiday or some popular events.
 
 
 ```{r}
