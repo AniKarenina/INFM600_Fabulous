@@ -1,9 +1,9 @@
 ---
 title: "INFM600_Fabulous_Rnotebook"
 output:
-  pdf_document: default
-  html_notebook: default
   html_document: default
+  html_notebook: default
+  pdf_document: default
 ---
 
 ```{r}
@@ -140,12 +140,10 @@ head(h)
 
 #plot all the data
 x=plot(h$StartDate,h$Ridership,main="The Ridership Distribution from 2010 to 2016",color="red",xlab="Date",ylab="The Number of Ridership",points(x,cex=1000000000000,col="red"), lwd=1.5)
-library(ggplot2)
-ggplot(h,aes(x=h$StartDate,y=h$Ridership))+geom_point()+geom_vline(xintercept=as.numeric(as.Date("2013-12-31")))
 
 #subset records based on whether the date is holiday or not
-h.holiday=subset(h,h$DayType=="Yes")
-h.nonholiday=subset(h,h$DayType=="No")
+h.holiday=subset(h,h$DayType=="Holiday")
+h.nonholiday=subset(h,h$DayType=="Non_Holiday")
 
 #calculate the mean of Ridership on holiday and non-holiday
 mean(h.holiday$Ridership)
@@ -156,8 +154,8 @@ sd(h.holiday$Ridership)
 sd(h.nonholiday$Ridership)
 
 #check the normality of these two data groups
-hist(h.holiday$Ridership)
-hist(h.nonholiday$Ridership)
+hist(h.holiday$Ridership, main="Histogram of Ridership on Holiday")
+hist(h.nonholiday$Ridership,main="Histogram of Ridership on Non-Holiday")
 qqnorm(h.holiday$Ridership)
 qqline(h.holiday$Ridership)
 qqnorm(h.nonholiday$Ridership)
@@ -167,9 +165,21 @@ qqline(h.nonholiday$Ridership)
 #perform two sample t-test
 t.test(h$Ridership~h$DayType,data=h)
 
-#do a bar plot and error bar:
+#calculate mean, sd, length, df and critical value for both groups
+mymeans=tapply(h$Ridership,h$DayType,mean)
+mysds=tapply(h$Ridership,h$DayType,sd)
+myns=tapply(h$Ridership,h$DayType,length)
+dfs=myns-1
+tcrits= qt(0.025,dfs,lower.tail = FALSE)
+##then you will get a list of tcrits
+
+h.upper = mymeans + tcrits *(mysds/sqrt(myns))
+h.lower = mymeans - tcrits *(mysds/sqrt(myns))
+
+H.ci=data.frame(dateType=c("Holiday","Non-Holiday"),rating=mymeans,upper=h.upper,lower=h.lower) 
+#do a bar plot with error bar:
 library(ggplot2)
-ggplot(h,aes(x=h$DayType,y=h$Ridership))+geom_bar(stat="identity")+geom_errorbar(aes(ymin=))
+ggplot(H.ci,aes(x=dateType,y=rating,fill=dateType))+geom_bar(stat="identity")+geom_errorbar(aes(ymin=h.lower,ymax=h.upper),width=0.2)+ggtitle("Bar plot for Holiday and Non_Holiday")
 
 ```
 
