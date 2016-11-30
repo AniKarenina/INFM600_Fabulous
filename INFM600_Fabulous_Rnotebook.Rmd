@@ -184,10 +184,11 @@ head(h)
 #plot all the data
 x=plot(h$StartDate,h$Ridership,main="The Ridership Distribution from 2010 to 2016",color="red",xlab="Date",ylab="The Number of Ridership",points(x,cex=1000000000000,col="red"), lwd=1.5)
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Descrition:
+
+This graph represents the whole distribution of the ridership from 2010 to 2016, which shows a very interesting trend. It is easy to be identified that the ridership is highly related to some key factors, which could be time, weather condition, temperature and season. In addition, in this graph, there are some outliers that have an unsual 
+
 
 ```{r}
 #subset records based on whether the date is holiday or not
@@ -205,33 +206,42 @@ sd(h.nonholiday$Ridership)
 #check the normality of these two data groups
 hist(h.holiday$Ridership, main="Histogram of Ridership on Holiday")
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description:
+
+The graph shows the distribution of the number of ridership on holiday. As the graph shows, it could be identified that the distribution skewed to the right and is somewhat bimodel distribution, not normal distribution. Therefore, we might cannot use two sample t-test to do further research. 
+
 ```{r}
 hist(h.nonholiday$Ridership,main="Histogram of Ridership on Non-Holiday")
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description:
+
+The graph shows the distribution of the number of ridership on non-holiday. As the graph shows, it could be identified that the distribution is normal distribution, which is different from the above distribution.   
+
 ```{r}
 qqnorm(h.holiday$Ridership)
 qqline(h.holiday$Ridership)
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description: 
+
+This graph shows the QQ plot and QQ line for the number of ridership on holiday. However, we conclude a different conclusion compared to the histogram of ridership on holiday. From QQ plot, because of the small samples of data, the distributon is light tailed and normal distribution. 
+
+Reference:
+G. (2015, June 10). How to interpret a QQ plot. Retrieved November 29, 2016, from http://stats.stackexchange.com/questions/101274/how-to-interpret-a-qq-plot
+
 ```{r}
 qqnorm(h.nonholiday$Ridership)
 qqline(h.nonholiday$Ridership)
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description: 
+
+This graph shows the QQ plot and QQ line for the number of ridership on non-holiday. We conclude a same conclusion with the histogram of ridership on non-holiday. From QQ plot, the distributon is quite normal distribution and light tailed.
+
+Therefore, based on the above test, the distribution of two dataset meet the assumption of two sample t-test.
+
 
 ```{r}
 #if the above test for normality is right and the distribution will be normal,we will 
@@ -249,12 +259,12 @@ tcrits= qt(0.025,dfs,lower.tail = FALSE)
 h.upper = mymeans + tcrits *(mysds/sqrt(myns))
 h.lower = mymeans - tcrits *(mysds/sqrt(myns))
 
-H.ci=data.frame(dateType=c("Holiday","Non-Holiday"),rating=mymeans,upper=h.upper,lower=h.lower) 
+H.ci=data.frame(dateType=c("Holiday","Non-Holiday"),Ridership=mymeans,upper=h.upper,lower=h.lower) 
 #do a bar plot with error bar:
 library(ggplot2)
-ggplot(H.ci,aes(x=dateType,y=rating,fill=dateType))+geom_bar(stat="identity")+geom_errorbar(aes(ymin=h.lower,ymax=h.upper),width=0.2)+ggtitle("Bar plot for Holiday and Non_Holiday")
+ggplot(H.ci,aes(x=dateType,y=Ridership,fill=dateType))+geom_bar(stat="identity")+geom_errorbar(aes(ymin=h.lower,ymax=h.upper),width=0.2)+ggtitle("Bar plot for Holiday and Non_Holiday")
 ```
-Description: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Description: 
+
+By using ggplot2 to get the box plot, we compared the mean of ridership on holiday and non-holiday with confidence interval. As seen in the graph, it is surprising that the number of ridership on holiday is smaller than the number on non-holiday, contrary to our expectations. In addition, the ridership on holiday has an extremley large confidence interval, which means we might need more data (the number for holiday date: 64 and the number for non-holiday:2047).  
