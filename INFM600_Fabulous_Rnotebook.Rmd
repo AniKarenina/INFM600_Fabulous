@@ -39,7 +39,7 @@ plot(b$mean_temperature, b$rides,xlab="Mean Temperature",ylab="The Number of Rid
 
 Description:
 
-This graph shows the relationship between mean temperature and the number of ridership. Although there are some outliers, the relationship is moderate positive linear relationship. Therefore, we conducted correlation test for these two variables. The p-value is smaller than 2.2e-16, so we reject the null hypothesis and conclude that there is a linear relationship between mean temperature and ridership. Meanwhile, since the correlation coefficient is equal to 0.657, we have the same conclusion as shown by the above plot that there is a meduim positive linear relationship between these two variables, which satisfied one of the assumptions of multiple linear regression. 
+This graph shows the relationship between mean temperature and the number of ridership. Although there are some outliers, the relationship is moderate positive linear relationship. Therefore, we conducted correlation test for these two variables. The p-value is smaller than 2.2e-16, so we reject the null hypothesis and conclude that there is a linear relationship between mean temperature and ridership. Meanwhile, since the correlation coefficient is equal to 0.657, we have the same conclusion as shown by the above plot that there is a medium positive linear relationship between these two variables, which satisfied one of the assumptions of multiple linear regression. 
 
 ```{r}
 plot(b$mean_dew, b$rides,xlab="Mean Dew Point Temperature",ylab="The Number of Ridership",main="The Relationship between Mean Dew Point Temperature and Ridership")
@@ -58,15 +58,16 @@ plot(lm(rides ~ mean_temperature + mean_dew, data = b))
 
 Description: 
 
-For the first graph, "Residuals vs Fitted", this graph shows the relationship between estimated reponses on x axis and residuals on the y axis, which let us detect non-linearity, unequal error variances and outliers, which are the assumptions of multiple linear regression. From this graph, since the residuals looks sort of "bounce radomly " around the 0 line, the assumption that the relationship is lineaer is reasonable. Meanwhile, because most residuals form a horizonal band around the 0 line, it suggests taht the variances of the error are equal. However, there are some residuals that stand out from the 0 line, suggesting there are outliers.
+For the first graph, "Residuals vs Fitted", this graph shows the relationship between estimated responses on x axis and residuals on the y axis, which let us detect non-linearity, unequal error variances and outliers, which are the assumptions of multiple linear regression. From this graph, since the residuals looks sort of "bounce randomly " around the 0 line, the assumption that the relationship is linear is reasonable. Meanwhile, because most residuals form a horizontal band around the 0 line, it suggests that the variances of the error are equal. However, there are some residuals that stand out from the 0 line, suggesting there are outliers.
 
 For the second graph, "Normal Q-Q", this graph shows the QQ plot for ridership against mean temperature and mean dew point temperature. From this graph, it suggests that it is a normal distribution since most points are fitted in the line. However, there are some points that deviated from the line, which we think are outliers.
 
 For the third graph, "Scale-Location", this graph are used to check homoscedasticity that whether the data have the same finite variance. From this graph, we could found there is no obvious pattern in the residuals. Therefore, we conclude that our data meet the assumption of homoscedasticity.
 
-For the forth graph, "Residuals vs Leverage", this graph shows the standardized residuals against levelrage. We can found most residuals are symmetrically centered around zero and reach 3-4 standard deviations aways from zero, the same as the expectation of the normal distribution. Meanwhile, although there is an extremly large outlier labed "1621", the cook's distance is also very small and no points have a large Cook's distance that larger than 0.5.
+For the fourth graph, "Residuals vs Leverage", this graph shows the standardized residuals against leverage. We can found most residuals are symmetrically centered around zero and reach 3-4 standard deviations away from zero, the same as the expectation of the normal distribution. Meanwhile, although there is an extremely large outlier labeled "1621", the cook's distance is also very small and no points have a large Cook's distance that larger than 0.5.
 
-Therefore, from these four plots, we check the assumptions of multiple lineaer regression and most of assumptions are satisfied. Although there are some outliers, they do not have a large effect because of our large sample size. 
+Therefore, from these four plots, we check the assumptions of multiple linear regression and most of assumptions are satisfied. Although there are some outliers, they do not have a large effect because of our large sample size.
+
 
 ```{r}
 #create a histogram of residuals to check for non-normality of error
@@ -78,7 +79,7 @@ hist(resid)
 
 Description: 
 
-This graph is the histogram of residuals and shows the distribution of the residuals, which check the same assumption as the above qq plot. It is easy to be identified that the distribution of residuals are the normal distribution, satisfying one of the assumptions of multiple linear regression.
+This graph is the histogram of residuals and shows the distribution of the residuals, which check the same assumption as the above QQ plot. It is easy to be identified that the distribution of residuals are the normal distribution, satisfying one of the assumptions of multiple linear regression.
 
 #Research Question #2: what are the peak hours on bike trips in a day
 ```{r}
@@ -162,7 +163,8 @@ plot(R$distance_hav,R$Ridership,xlab="Distance between Stations",ylab="The Numbe
 
 Description: 
 
-Before this graph, we group all data by start station and end station and use R to calculate the distance between two set of long and lat. The graph shows the relatonship between the number of ridership and the distance between start station and end station. From this graph, it could be identified that there is a negative relatonship between ridership and distance. In other words, the farther the distance between two stations is, the smaller the number of the ridership is. However, there is a limitation that we calculate the linear distance between two set of long and lat, instead of actual distance. (*we have used python to connect Google API and calcualte the actual distance. But Google API will charge us if there are more than 2500 elements, while we have more than 30000 elements)
+Before this graph, we group all data by start station and end station and use R to calculate the distance between two set of long and lat. The graph shows the relationship between the number of ridership and the distance between start station and end station. From this graph, it could be identified that there is a negative relationship between ridership and distance. In other words, the farther the distance between two stations is, the smaller the number of the ridership is. However, there is a limitation that we calculate the linear distance between two set of long and lat, instead of actual distance. (*we have used python to connect Google API and calculate the actual distance. But Google API will charge us if there are more than 2500 elements, while we have more than 30000 elements)
+
 
 #Research Question #4:how do the national holidays impact the bike ride counts?
 ```{r}
@@ -174,9 +176,9 @@ head(h)
 x=plot(h$StartDate,h$Ridership,main="The Ridership Distribution from 2010 to 2016",color="red",xlab="Date",ylab="The Number of Ridership",points(x,cex=1000000000000,col="red"), lwd=1.5)
 ```
 
-Descrition:
+Description:
 
-This graph represents the whole distribution of the ridership from 2010 to 2016, which shows a very interesting trend. It is easy to be identified that the ridership is highly related to some key factors, which could be time, weather condition, temperature and season. In addition, in this graph, there are some outliers that have an unsual performance on certain dates. Therefore, we think it might be caused by some other key factors, like holiday or some popular events.
+This graph represents the whole distribution of the ridership from 2010 to 2016, which shows a very interesting trend. It is easy to be identified that the ridership is highly related to some key factors, which could be time, weather condition, temperature and season. In addition, in this graph, there are some outliers that have an unusual performance on certain dates. Therefore, we think it might be caused by some other key factors, like holiday or some popular events.
 
 
 ```{r}
@@ -198,7 +200,8 @@ hist(h.holiday$Ridership, main="Histogram of Ridership on Holiday")
 
 Description:
 
-The graph shows the distribution of the number of ridership on holiday. As the graph shows, it could be identified that the distribution skewed to the right and is somewhat bimodel distribution, not normal distribution. Therefore, we might cannot use two sample t-test to do further research. 
+The graph shows the distribution of the number of ridership on holiday. As the graph shows, it could be identified that the distribution skewed to the right and is somewhat bimodal distribution, not normal distribution. Therefore, we might cannot use two sample t-test to do further research.
+
 
 ```{r}
 hist(h.nonholiday$Ridership,main="Histogram of Ridership on Non-Holiday")
@@ -215,7 +218,8 @@ qqline(h.holiday$Ridership)
 
 Description: 
 
-This graph shows the QQ plot and QQ line for the number of ridership on holiday. However, we conclude a different conclusion compared to the histogram of ridership on holiday. From QQ plot, because of the small samples of data, the distributon is light tailed and normal distribution. 
+This graph shows the QQ plot and QQ line for the number of ridership on holiday. However, we conclude a different conclusion compared to the histogram of ridership on holiday. From QQ plot, because of the small samples of data, the distribution is light tailed and normal distribution. 
+
 
 Reference:
 G. (2015, June 10). How to interpret a QQ plot. Retrieved November 29, 2016, from http://stats.stackexchange.com/questions/101274/how-to-interpret-a-qq-plot
@@ -227,7 +231,7 @@ qqline(h.nonholiday$Ridership)
 
 Description: 
 
-This graph shows the QQ plot and QQ line for the number of ridership on non-holiday. We conclude a same conclusion with the histogram of ridership on non-holiday. From QQ plot, the distributon is quite normal distribution and light tailed.
+This graph shows the QQ plot and QQ line for the number of ridership on non-holiday. We conclude a same conclusion with the histogram of ridership on non-holiday. From QQ plot, the distribution is quite normal distribution and light tailed.
 
 Therefore, based on the above test, the distribution of two dataset meet the assumption of two sample t-test.
 
@@ -256,24 +260,24 @@ ggplot(H.ci,aes(x=dateType,y=Ridership,fill=dateType))+geom_bar(stat="identity")
 
 Description: 
 
-By using ggplot2 to get the box plot, we compared the mean of ridership on holiday and non-holiday with confidence interval. As seen in the graph, it is surprising that the number of ridership on holiday is smaller than the number on non-holiday, contrary to our expectations. In addition, the ridership on holiday has an extremley large confidence interval, which means we might need more data (the number for holiday date: 64 and the number for non-holiday:2047).  
+By using ggplot2 to get the box plot, we compared the mean of ridership on holiday and non-holiday with confidence interval. As seen in the graph, it is surprising that the number of ridership on holiday is smaller than the number on non-holiday, contrary to our expectations. In addition, the ridership on holiday has an extremely large confidence interval, which means we might need more data (the number for holiday date: 64 and the number for non-holiday:2047).  
 
 ```{r}
-p = read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_DistanceBetweenStartAndEnd.csv")
-s=read.csv("INFM600_0201_Fabulous_DataSet\\Station.csv")
+p = read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_RidershipPerStartAndEndLargerThan500.csv")
+s=read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_DataSet_StationForVisulization.csv")
+h=read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_ImportantStationName.csv")
+
 library(ggplot2)
 library(ggrepel)
 
 p1 <- ggplot(p) +
   geom_segment(aes(x=p$start_long, xend=p$end_long, y=p$start_lat, yend=p$end_lat, size=p$Ridership, colour=p$Ridership, alpha=p$Ridership)) +
-  geom_point(data=s, aes(x=s$long, y=s$lat), size=0.1) +
-  geom_text_repel(data=s, aes(x=long, y=lat, label=s$name), size=4) +
+  geom_point(data=s, aes(x=s$long, y=s$lat), size=4) +
+  geom_text_repel(data=h, aes(x=h$long, y=h$lat, label=h$StartStation), size=20) +
   theme_light(base_size=10) +
-  scale_colour_gradientn(colors=c("#dddddd", "#20beff"), limits=c(0, max(p$Ridership)), name="Number of Trips") +
+  scale_colour_gradientn(colors=c("#ffb7b5", "#7a0501"), limits=c(500, max(p$Ridership)), name="Number of Trips") +
   scale_alpha(limits=c(0, max(p$Ridership)), guide=FALSE) +
-  scale_size(limits=c(0, max(p$Ridership)), guide=FALSE) +
-  xlab("") +
-  ylab("") +
+  scale_size(limits=c(0, max(p$Ridership)), guide=FALSE) + 
   coord_fixed() +
   theme(axis.line=element_blank(),
         axis.text.x=element_blank(),
@@ -284,6 +288,10 @@ p1 <- ggplot(p) +
         panel.grid=element_blank(),
         panel.border=element_blank())
 
-ggsave("DC_trips.pdf", p1, width=10, height=8, units="in")
+ggsave("VisulizationForStation.pdf",p1,height=250,width=250,units="cm",limitsize=FALSE)
+
 
 ```
+
+Description:
+This graph shows geo-heat map between start stations and end stations. Because there are so many stations in our dataset, we only focus those sets of stations that have more than 500 trips during 6 years.  
