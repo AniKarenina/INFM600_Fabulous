@@ -257,3 +257,33 @@ ggplot(H.ci,aes(x=dateType,y=Ridership,fill=dateType))+geom_bar(stat="identity")
 Description: 
 
 By using ggplot2 to get the box plot, we compared the mean of ridership on holiday and non-holiday with confidence interval. As seen in the graph, it is surprising that the number of ridership on holiday is smaller than the number on non-holiday, contrary to our expectations. In addition, the ridership on holiday has an extremley large confidence interval, which means we might need more data (the number for holiday date: 64 and the number for non-holiday:2047).  
+
+```{r}
+p = read.csv("INFM600_0201_Fabulous_DataSet\\INFM600_0201_Fabulous_DistanceBetweenStartAndEnd.csv")
+s=read.csv("INFM600_0201_Fabulous_DataSet\\Station.csv")
+library(ggplot2)
+library(ggrepel)
+
+p1 <- ggplot(p) +
+  geom_segment(aes(x=p$start_long, xend=p$end_long, y=p$start_lat, yend=p$end_lat, size=p$Ridership, colour=p$Ridership, alpha=p$Ridership)) +
+  geom_point(data=s, aes(x=s$long, y=s$lat), size=0.1) +
+  geom_text_repel(data=s, aes(x=long, y=lat, label=s$name), size=4) +
+  theme_light(base_size=10) +
+  scale_colour_gradientn(colors=c("#dddddd", "#20beff"), limits=c(0, max(p$Ridership)), name="Number of Trips") +
+  scale_alpha(limits=c(0, max(p$Ridership)), guide=FALSE) +
+  scale_size(limits=c(0, max(p$Ridership)), guide=FALSE) +
+  xlab("") +
+  ylab("") +
+  coord_fixed() +
+  theme(axis.line=element_blank(),
+        axis.text.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank(),
+        panel.grid=element_blank(),
+        panel.border=element_blank())
+
+ggsave("DC_trips.pdf", p1, width=10, height=8, units="in")
+
+```
